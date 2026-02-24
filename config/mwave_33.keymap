@@ -13,67 +13,61 @@
     quick-tap-ms = <175>;
 };
 
+// Extends the Sticky Layer window to 2 seconds so you don't have to rush
+&sl {
+    release-after-ms = <2000>;
+};
+
 / {
     macros {
-        vh_macro: vh_macro {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp V &kp H>;
-        };
+        vh_macro: vh_macro { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp V &kp H>; };
+        cl_macro: cl_macro { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp C &kp L>; };
+        m08: m08 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp N0 &kp N8>; };
 
-        cl_macro: cl_macro {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp C &kp L>;
-        };
-
-        m08: m08 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp N0 &kp N8>;
-        };
+        // WORK MACROS
+        m_pt1: m_pt1 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp C &kp M &kp A &kp UNDER &kp P &kp T &kp N1>; };
+        m_pt2: m_pt2 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp C &kp M &kp A &kp UNDER &kp P &kp T &kp N2>; };
+        m_cma: m_cma { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp C &kp M &kp A>; };
+        m_ms:  m_ms  { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp M &kp S>; };
     };
 
     behaviors {
-        td_v_h: tap_dance_v_h {
+        // DIAGNOSTIC Tap Dance for Q (1=Q, 2=N)
+        td_q_test: td_q_test {
             compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_V_H";
+            label = "TD_Q_TEST";
             #binding-cells = <0>;
-            tapping-term-ms = <200>; 
-            bindings = <&kp V>, <&vh_macro>;
+            tapping-term-ms = <400>;
+            bindings = <&kp Q>, <&kp N>;
         };
 
-        // Z Tap Dance: 1=z, 2=N, 3=Y
+        // Z Tap Dance: 1=Z, 2=N, 3=Y
         td_z_n_y: td_z_n_y {
             compatible = "zmk,behavior-tap-dance";
             label = "TD_Z_N_Y";
             #binding-cells = <0>;
-            tapping-term-ms = <300>; // Increased to 300ms for easier triple-tapping
+            tapping-term-ms = <300>;
             bindings = <&kp Z>, <&kp N>, <&kp Y>;
         };
 
-        td_c_l: tap_dance_c_l {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_C_L";
-            #binding-cells = <0>;
+        td_v_h: td_v_h { compatible = "zmk,behavior-tap-dance"; label = "TD_V_H"; #binding-cells = <0>; tapping-term-ms = <200>; bindings = <&kp V>, <&vh_macro>; };
+        td_c_l: td_c_l { compatible = "zmk,behavior-tap-dance"; label = "TD_C_L"; #binding-cells = <0>; tapping-term-ms = <200>; bindings = <&kp C>, <&cl_macro>; };
+        td_1_08: td_1_08 { compatible = "zmk,behavior-tap-dance"; label = "TD_1_08"; #binding-cells = <0>; tapping-term-ms = <200>; bindings = <&kp N1>, <&m08>; };
+
+        alt_bs: alt_bs {
+            compatible = "zmk,behavior-hold-tap";
+            label = "ALT_BS";
+            #binding-cells = <2>;
             tapping-term-ms = <200>;
-            bindings = <&kp C>, <&cl_macro>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
         };
 
-        td_1_08: td_1_08 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_1_08";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp N1>, <&m08>;
-        };
-
-        ht: hold_tap_template {
+        ht: ht {
             compatible = "zmk,behavior-hold-tap";
             label = "HOLD_TAP";
             #binding-cells = <2>;
             tapping-term-ms = <200>;
-            quick-tap-ms = <175>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
         };
@@ -89,12 +83,24 @@
         default_layer {
             display-name = "Base";
             bindings = <
-&kp ESC    &kp F1        &kp F2        &ht F10 F3         &kp F4        &kp F5          &kp F6        &kp F7     &kp F8     &kp F9    &kp F10    &kp F11    &kp F12    &kp HOME   &kp END  &kp INSERT  &to 1
-&kp GRAVE  &td_1_08      &kp N2        &kp N3             &kp N4        &kp N5          &kp N6        &kp N7     &kp N8     &kp N9    &kp N0     &kp MINUS  &kp EQUAL  &kp BSPC
-&kp TAB    &kp Q         &kp W         &kp E              &kp R         &kp T           &kp Y         &kp U      &kp I      &kp O     &kp P      &kp LBKT   &kp RBKT   &kp BSLH   &kp DEL
+&kp ESC    &kp F1        &kp F2        &ht F10 F3         &kp F4        &kp F5          &kp F6        &kp F7     &kp F8     &kp F9    &kp F10    &kp F11    &kp F12    &kp HOME   &kp END  &kp INSERT  &to 2
+&sl 1      &td_1_08      &kp N2        &kp N3             &kp N4        &kp N5          &kp N6        &kp N7     &kp N8     &kp N9    &kp N0     &kp MINUS  &kp EQUAL  &kp BSPC
+&kp TAB    &td_q_test    &kp W         &kp E              &kp R         &kp T           &kp Y         &kp U      &kp I      &kp O     &kp P      &kp LBKT   &kp RBKT   &kp BSLH   &kp DEL
 &kp CLCK   &mt LC(A) A   &mt LC(X) S   &mt LC(C) D        &mt LC(V) F   &mt KP_PLUS G   &kp H         &kp J      &kp K      &kp L     &kp SEMI   &kp SQT    &kp RET    &kp PG_UP
 &kp LSHFT  &td_z_n_y     &kp X         &td_c_l            &td_v_h       &kp B           &kp N         &kp M      &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT  &kp UP     &kp PG_DN
-&kp LCTRL  &kp LGUI      &kp BACKSPACE      &ht RETURN SPACE   &kp SPACE     &kp RALT        &kp K_CMENU  &kp RCTRL  &kp LEFT   &kp DOWN  &kp RIGHT
+&kp LCTRL  &kp LGUI      &alt_bs LALT BSPC                &ht RETURN SPACE              &kp SPACE     &kp RALT   &kp K_CMENU  &kp RCTRL  &kp LEFT   &kp DOWN  &kp RIGHT
+            >;
+        };
+
+        work_layer {
+            display-name = "CMA";
+            bindings = <
+&trans     &trans        &trans        &trans             &trans        &trans          &trans        &trans     &trans     &trans    &trans     &trans     &trans     &trans     &trans   &trans      &trans
+&trans     &m_pt1        &m_pt2        &m_cma             &m_ms         &trans          &trans        &trans     &trans     &trans    &trans     &trans     &trans     &trans
+&trans     &trans        &trans        &trans             &trans        &trans          &trans        &trans     &trans     &trans    &trans     &trans     &trans     &trans     &trans
+&trans     &trans        &trans        &trans             &trans        &trans          &trans        &trans     &trans     &trans    &trans     &trans     &trans     &trans
+&trans     &trans        &trans        &trans             &trans        &trans          &trans        &trans     &trans     &trans    &trans     &trans     &trans     &trans
+&trans     &trans        &trans        &trans             &trans        &trans          &trans        &trans     &trans     &trans    &trans
             >;
         };
 
