@@ -46,6 +46,15 @@
             bindings = <&kp V>, <&vh_macro>;
         };
 
+        // UPDATED Z Tap Dance: 1=z, 2=N, 3=Y
+        td_z_n_y: td_z_n_y {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_Z_N_Y";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp Z>, <&kp N>, <&kp Y>;
+        };
+
         // New Tap Dance for C
         td_c_l: tap_dance_c_l {
             compatible = "zmk,behavior-tap-dance";
