@@ -14,25 +14,59 @@
 };
 
 // Extends the Sticky Layer window to 2 seconds so you don't have to rush
-&sl {
-    release-after-ms = <2000>;
-};
+
+&sl { release-after-ms = <2000>; };
 
 / {
     macros {
-        vh_macro: vh_macro { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp V &kp H>; };
-        cl_macro: cl_macro { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp C &kp L>; };
-        m08: m08 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp N0 &kp N8>; };
+        vh_macro: vh_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp V &kp H>;
+        };
+
+        cl_macro: cl_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp C &kp L>;
+        };
+
+        m08: m08 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp N0 &kp N8>;
+        };
 
         // WORK MACROS
-        m_pt1: m_pt1 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp C &kp M &kp A &kp UNDER &kp P &kp T &kp N1>; };
-        m_pt2: m_pt2 { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp C &kp M &kp A &kp UNDER &kp P &kp T &kp N2>; };
-        m_cma: m_cma { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp C &kp M &kp A>; };
-        m_ms:  m_ms  { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp M &kp S>; };
+
+        m_pt1: m_pt1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp C &kp M &kp A &kp UNDER &kp P &kp T &kp N1>;
+        };
+
+        m_pt2: m_pt2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp C &kp M &kp A &kp UNDER &kp P &kp T &kp N2>;
+        };
+
+        m_cma: m_cma {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp C &kp M &kp A>;
+        };
+
+        m_ms: m_ms {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp M &kp S>;
+        };
     };
 
     behaviors {
         // DIAGNOSTIC Tap Dance for Q (1=Q, 2=N)
+
         td_q_test: td_q_test {
             compatible = "zmk,behavior-tap-dance";
             label = "TD_Q_TEST";
@@ -42,6 +76,7 @@
         };
 
         // Z Tap Dance: 1=Z, 2=N, 3=Y
+
         td_z_n_y: td_z_n_y {
             compatible = "zmk,behavior-tap-dance";
             label = "TD_Z_N_Y";
@@ -50,9 +85,29 @@
             bindings = <&kp Z>, <&kp N>, <&kp Y>;
         };
 
-        td_v_h: td_v_h { compatible = "zmk,behavior-tap-dance"; label = "TD_V_H"; #binding-cells = <0>; tapping-term-ms = <200>; bindings = <&kp V>, <&vh_macro>; };
-        td_c_l: td_c_l { compatible = "zmk,behavior-tap-dance"; label = "TD_C_L"; #binding-cells = <0>; tapping-term-ms = <200>; bindings = <&kp C>, <&cl_macro>; };
-        td_1_08: td_1_08 { compatible = "zmk,behavior-tap-dance"; label = "TD_1_08"; #binding-cells = <0>; tapping-term-ms = <200>; bindings = <&kp N1>, <&m08>; };
+        td_v_h: td_v_h {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_V_H";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp V>, <&vh_macro>;
+        };
+
+        td_c_l: td_c_l {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_C_L";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp C>, <&cl_macro>;
+        };
+
+        td_1_08: td_1_08 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_1_08";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp N1>, <&m08>;
+        };
 
         alt_bs: alt_bs {
             compatible = "zmk,behavior-hold-tap";
@@ -83,44 +138,67 @@
         default_layer {
             display-name = "Base";
             bindings = <
-&kp ESC    &kp F1        &kp F2        &ht F10 F3         &kp F4        &kp F5          &kp F6        &kp F7     &kp F8     &kp F9    &kp F10    &kp F11    &kp F12    &kp HOME   &kp END  &kp INSERT  &to 2
-&sl 1      &td_1_08      &kp N2        &kp N3             &kp N4        &kp N5          &kp N6        &kp N7     &kp N8     &kp N9    &kp N0     &kp MINUS  &kp EQUAL  &kp BSPC
-&kp TAB    &td_q_test    &kp W         &kp E              &kp R         &kp T           &kp Y         &kp U      &kp I      &kp O     &kp P      &kp LBKT   &kp RBKT   &kp BSLH   &kp DEL
-&kp CLCK   &mt LC(A) A   &mt LC(X) S   &mt LC(C) D        &mt LC(V) F   &mt KP_PLUS G   &kp H         &kp J      &kp K      &kp L     &kp SEMI   &kp SQT    &kp RET    &kp PG_UP
-&kp LSHFT  &td_z_n_y     &kp X         &td_c_l            &td_v_h       &kp B           &kp N         &kp M      &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT  &kp UP     &kp PG_DN
-&kp LCTRL  &kp LGUI      &alt_bs LALT BSPC                &ht RETURN SPACE              &kp SPACE     &kp RALT   &kp K_CMENU  &kp RCTRL  &kp LEFT   &kp DOWN  &kp RIGHT
+&kp ESC    &kp F1       &kp F2             &ht F10 F3        &kp F4       &kp F5         &kp F6       &kp F7     &kp F8     &kp F9    &kp F10    &kp F11    &kp F12    &kp HOME   &kp END  &kp INSERT  &tog 2
+&sl 1      &td_1_08     &kp N2             &kp N3            &kp N4       &kp N5         &kp N6       &kp N7     &kp N8     &kp N9    &kp N0     &kp MINUS  &kp EQUAL  &kp BSPC
+&kp TAB    &kp Q        &kp W              &kp E             &kp R        &kp T          &kp Y        &kp U      &kp I      &kp O     &kp P      &kp LBKT   &kp RBKT   &kp BSLH   &kp DEL
+&kp CLCK   &mt LC(A) A  &mt LC(X) S        &mt LC(C) D       &mt LC(V) F  &mt KP_PLUS G  &kp H        &kp J      &kp K      &kp L     &kp SEMI   &kp SQT    &kp RET    &kp PG_UP
+&kp LSHFT  &td_z_n_y    &kp X              &td_c_l           &td_v_h      &kp B          &kp N        &kp M      &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT  &kp UP     &kp PG_DN
+&kp LCTRL  &kp LGUI     &alt_bs LALT BSPC  &ht RETURN SPACE  &kp SPACE    &kp RALT       &kp K_CMENU  &kp RCTRL  &kp LEFT   &kp DOWN  &kp RIGHT
             >;
         };
 
         work_layer {
             display-name = "CMA";
             bindings = <
-&trans     &trans        &trans        &trans             &trans        &trans          &trans        &trans     &trans     &trans    &trans     &trans     &trans     &trans     &trans   &trans      &trans
-&trans     &m_pt1        &m_pt2        &m_cma             &m_ms         &trans          &trans        &trans     &trans     &trans    &trans     &trans     &trans     &trans
-&trans     &trans        &trans        &trans             &trans        &trans          &trans        &trans     &trans     &trans    &trans     &trans     &trans     &trans     &trans
-&trans     &trans        &trans        &trans             &trans        &trans          &trans        &trans     &trans     &trans    &trans     &trans     &trans     &trans
-&trans     &trans        &trans        &trans             &trans        &trans          &trans        &trans     &trans     &trans    &trans     &trans     &trans     &trans
-&trans     &trans        &trans        &trans             &trans        &trans          &trans        &trans     &trans     &trans    &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &m_pt1  &m_pt2  &m_cma  &m_ms   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         raise {
             display-name = "Fn";
             bindings = <
-&kp ESCAPE      &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PREV  &kp C_PP  &kp C_NEXT  &bl BL_CYCLE  &kp LG(D)  &kp LS(LG(S))  &kp LG(TAB)      &kp LG(S)        &none      &kp SCROLLLOCK  &kp PAUSE_BREAK  &kp KP_NUMLOCK  &to 0
-&kp GRAVE       &kp N1      &kp N2        &kp N3        &kp N4      &kp N5    &kp N6      &kp N7        &kp N8     &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp MINUS        &kp EQUAL  &kp BACKSPACE
-&kp TAB         &kp Q       &kp W         &kp E         &kp R       &kp T     &kp Y       &kp KP_N7     &kp KP_N8  &kp KP_N9      &kp KP_MINUS     &kp LBKT         &kp RBKT   &kp BSLH        &kp DELETE
-&studio_unlock  &kp A       &kp S         &kp D         &kp F       &kp G     &kp H       &kp KP_N4     &kp KP_N5  &kp KP_N6      &kp KP_PLUS      &kp SQT          &kp ENTER  &kp PAGE_UP
-&kp LEFT_SHIFT  &kp Z       &kp X         &kp C         &kp V       &kp B     &kp N       &kp KP_N1     &kp KP_N2  &kp KP_N3      &kp KP_ENTER     &kp RIGHT_SHIFT  &kp UP     &kp PAGE_DOWN
-&kp LCTRL       &bootloader    &kp LALT      &kp SPACE     &kp KP_N0   &kp RALT  &kp KP_DOT  &kp RCTRL     &kp LEFT   &kp DOWN       &kp RIGHT
+&kp ESCAPE      &kp C_MUTE   &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PREV  &kp C_PP  &kp C_NEXT  &bl BL_CYCLE  &kp LG(D)  &kp LS(LG(S))  &kp LG(TAB)      &kp LG(S)        &none      &kp SCROLLLOCK  &kp PAUSE_BREAK  &kp KP_NUMLOCK  &to 0
+&kp GRAVE       &kp N1       &kp N2        &kp N3        &kp N4      &kp N5    &kp N6      &kp N7        &kp N8     &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp MINUS        &kp EQUAL  &kp BACKSPACE
+&kp TAB         &kp Q        &kp W         &kp E         &kp R       &kp T     &kp Y       &kp KP_N7     &kp KP_N8  &kp KP_N9      &kp KP_MINUS     &kp LBKT         &kp RBKT   &kp BSLH        &kp DELETE
+&studio_unlock  &kp A        &kp S         &kp D         &kp F       &kp G     &kp H       &kp KP_N4     &kp KP_N5  &kp KP_N6      &kp KP_PLUS      &kp SQT          &kp ENTER  &kp PAGE_UP
+&kp LEFT_SHIFT  &kp Z        &kp X         &kp C         &kp V       &kp B     &kp N       &kp KP_N1     &kp KP_N2  &kp KP_N3      &kp KP_ENTER     &kp RIGHT_SHIFT  &kp UP     &kp PAGE_DOWN
+&kp LCTRL       &bootloader  &kp LALT      &kp SPACE     &kp KP_N0   &kp RALT  &kp KP_DOT  &kp RCTRL     &kp LEFT   &kp DOWN       &kp RIGHT
             >;
         };
 
-        extra1 { display-name = "Blue"; status = "reserved"; };
-        extra2 { display-name = "Green"; status = "reserved"; };
-        extra3 { display-name = "Red"; status = "reserved"; };
-        extra4 { display-name = "Purple"; status = "reserved"; };
-        extra5 { display-name = "Cyan"; status = "reserved"; };
-        extra6 { display-name = "Yellow"; status = "reserved"; };
+        extra1 {
+            display-name = "Blue";
+            status = "reserved";
+        };
+
+        extra2 {
+            display-name = "Green";
+            status = "reserved";
+        };
+
+        extra3 {
+            display-name = "Red";
+            status = "reserved";
+        };
+
+        extra4 {
+            display-name = "Purple";
+            status = "reserved";
+        };
+
+        extra5 {
+            display-name = "Cyan";
+            status = "reserved";
+        };
+
+        extra6 {
+            display-name = "Yellow";
+            status = "reserved";
+        };
     };
 };
