@@ -9,7 +9,7 @@
 /* GLOBAL SETTINGS */
 &mt {
     flavor = "tap-preferred";
-    tapping-term-ms = <150>; // Dropped to 150ms for high-speed typing
+    tapping-term-ms = <150>; 
     require-prior-idle-ms = <150>;
     quick-tap-ms = <175>;
 };
@@ -72,6 +72,16 @@
             bindings = <&kp P &kp E &kp R &kp SPACE &kp S &kp T &kp M &kp N &kp T &kp SPACE &kp R &kp E &kp V>;
             label = "M_PSR";
         };
+
+        // MENU MACRO (Alt+T, M, P)
+        m_atmp: m_atmp {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <20>;
+            bindings = <&kp LALT &kp T &kp M &kp P>;
+            label = "M_ATMP";
+        };
     };
 
     behaviors {
@@ -111,7 +121,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "ALT_BS";
             #binding-cells = <2>;
-            tapping-term-ms = <150>; // Dropped to 150ms
+            tapping-term-ms = <150>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
         };
@@ -120,7 +130,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HOLD_TAP";
             #binding-cells = <2>;
-            tapping-term-ms = <150>; // Dropped to 150ms
+            tapping-term-ms = <150>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
         };
@@ -140,7 +150,7 @@
 &kp ESC    &kp F1       &kp F2             &ht F10 F3        &kp F4       &kp F5         &kp F6       &kp F7     &kp F8     &kp F9    &kp F10    &kp F11    &kp F12    &kp HOME   &kp END  &kp INSERT  &to 1
 &sl 2      &td_1_08     &kp N2             &kp N3            &kp N4       &kp N5         &kp N6       &kp N7     &kp N8     &kp N9    &kp N0     &kp MINUS  &kp EQUAL  &kp BSPC
 &kp TAB    &kp Q        &kp W              &kp E             &kp R        &kp T          &kp Y        &kp U      &kp I      &kp O     &kp P      &kp LBKT   &kp RBKT   &kp BSLH   &kp DEL
-&kp CLCK   &mt LC(A) A  &mt LC(X) S        &mt LC(C) D       &mt LC(V) F  &mt KP_PLUS G  &kp H        &kp J      &kp K      &kp L     &kp SEMI   &kp SQT    &kp RET    &kp PG_UP
+&mo 3      &mt LC(A) A  &mt LC(X) S        &mt LC(C) D       &mt LC(V) F  &mt KP_PLUS G  &kp H        &kp J      &kp K      &kp L     &kp SEMI   &kp SQT    &kp RET    &kp PG_UP
 &kp LSHFT  &td_z_n_y    &kp X              &td_c_l           &td_v_h      &kp B          &kp N        &kp M      &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT  &kp UP     &kp PG_DN
 &kp LCTRL  &kp LGUI     &alt_bs LALT BSPC  &ht RETURN SPACE  &kp SPACE    &kp RALT       &kp K_CMENU  &kp RCTRL  &kp LEFT   &kp DOWN  &kp RIGHT
             >;
@@ -159,16 +169,29 @@
             >;
         };
 
-        // LAYER 2: WORK MACROS
+        // LAYER 2: WORK MACROS (CMA)
         work_layer {
             display-name = "CMA";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &m_pt1  &m_pt2  &m_cma  &m_ms   &m_aka  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&m_psr  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &m_pt1    &m_pt2  &m_cma  &m_ms   &m_aka  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&m_psr  &m_atmp   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&kp CLCK &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        // LAYER 3: NAV LAYER (WASD + LEFT THUMB ENTER)
+        nav_layer {
+            display-name = "Nav";
+            bindings = <
+&trans  &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans    &kp UP    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans    &kp RET   &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
