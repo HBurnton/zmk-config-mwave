@@ -6,9 +6,10 @@
 #include <dt-bindings/zmk/keys.h>
 #include "studio-macros.dtsi"
 
+/* GLOBAL SETTINGS */
 &mt {
     flavor = "tap-preferred";
-    tapping-term-ms = <200>;
+    tapping-term-ms = <175>; 
     require-prior-idle-ms = <150>;
     quick-tap-ms = <175>;
 };
@@ -34,7 +35,6 @@
         };
 
         // WORK MACROS
-
         m_pt1: m_pt1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -65,11 +65,16 @@
             bindings = <&kp A &kp K &kp A &kp SPACE>;
             label = "M_AKA";
         };
+
+        m_psr: m_psr {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp P &kp E &kp R &kp SPACE &kp S &kp T &kp M &kp N &kp T &kp SPACE &kp R &kp E &kp V>;
+            label = "M_PSR";
+        };
     };
 
     behaviors {
-        // Z Tap Dance: 1=z, 2=N, 3=Y
-
         td_z_n_y: td_z_n_y {
             compatible = "zmk,behavior-tap-dance";
             label = "TD_Z_N_Y";
@@ -106,7 +111,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "ALT_BS";
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <175>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
         };
@@ -115,7 +120,7 @@
             compatible = "zmk,behavior-hold-tap";
             label = "HOLD_TAP";
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <175>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
         };
@@ -128,8 +133,7 @@
     keymap {
         compatible = "zmk,keymap";
 
-        // LAYER 0
-
+        // LAYER 0: BASE
         default_layer {
             display-name = "Base";
             bindings = <
@@ -142,8 +146,7 @@
             >;
         };
 
-        // LAYER 1
-
+        // LAYER 1: FUNCTION / NUMPAD
         raise {
             display-name = "Fn";
             bindings = <
@@ -156,48 +159,24 @@
             >;
         };
 
-        // LAYER 2
-
+        // LAYER 2: WORK MACROS
         work_layer {
             display-name = "CMA";
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &m_pt1  &m_pt2  &m_cma  &m_ms   &m_aka  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&m_psr  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
-        extra1 {
-            display-name = "Blue";
-            status = "reserved";
-        };
-
-        extra2 {
-            display-name = "Green";
-            status = "reserved";
-        };
-
-        extra3 {
-            display-name = "Red";
-            status = "reserved";
-        };
-
-        extra4 {
-            display-name = "Purple";
-            status = "reserved";
-        };
-
-        extra5 {
-            display-name = "Cyan";
-            status = "reserved";
-        };
-
-        extra6 {
-            display-name = "Yellow";
-            status = "reserved";
-        };
+        extra1 { display-name = "Blue"; status = "reserved"; };
+        extra2 { display-name = "Green"; status = "reserved"; };
+        extra3 { display-name = "Red"; status = "reserved"; };
+        extra4 { display-name = "Purple"; status = "reserved"; };
+        extra5 { display-name = "Cyan"; status = "reserved"; };
+        extra6 { display-name = "Yellow"; status = "reserved"; };
     };
 };
