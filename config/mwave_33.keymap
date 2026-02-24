@@ -15,22 +15,38 @@
 
 / {
     macros {
-        // This macro types 'v' then 'h'
+        // Macro for v -> vh
         vh_macro: vh_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp V &kp H>;
         };
+
+        // New Macro for c -> cl
+        cl_macro: cl_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp C &kp L>;
+        };
     };
 
     behaviors {
+        // Tap Dance for V
         td_v_h: tap_dance_v_h {
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_V_H";
             #binding-cells = <0>;
             tapping-term-ms = <200>; 
-            // 1 Tap = V | 2 Taps = Macro (V then H)
             bindings = <&kp V>, <&vh_macro>;
+        };
+
+        // New Tap Dance for C
+        td_c_l: tap_dance_c_l {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_C_L";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp C>, <&cl_macro>;
         };
     };
 };
@@ -58,7 +74,7 @@
 &kp GRAVE  &kp N1       &kp N2       &kp N3         &kp N4       &kp N5         &kp N6       &kp N7     &kp N8     &kp N9    &kp N0     &kp MINUS  &kp EQUAL  &kp BSPC
 &kp TAB    &kp Q        &kp W        &kp E          &kp R        &kp T          &kp Y        &kp U      &kp I      &kp O     &kp P      &kp LBKT   &kp RBKT   &kp BSLH   &kp DEL
 &kp CLCK   &mt LC(A) A  &mt LC(X) S  &mt LC(C) D    &mt LC(V) F  &mt KP_PLUS G  &kp H        &kp J      &kp K      &kp L     &kp SEMI   &kp SQT    &kp RET    &kp PG_UP
-&kp LSHFT  &kp Z        &kp X        &kp C          &td_v_h        &kp B          &kp N        &kp M      &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT  &kp UP     &kp PG_DN
+&kp LSHFT  &kp Z        &kp X        &td_c_l          &td_v_h        &kp B          &kp N        &kp M      &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT  &kp UP     &kp PG_DN
 &kp LCTRL  &kp LGUI     &kp LALT     &kp BACKSPACE  &kp SPACE    &kp RALT       &kp K_CMENU  &kp RCTRL  &kp LEFT   &kp DOWN  &kp RIGHT
             >;
         };
@@ -71,7 +87,7 @@
 &kp TAB         &kp Q       &kp W         &kp E         &kp R       &kp T     &kp Y       &kp KP_N7     &kp KP_N8  &kp KP_N9      &kp KP_MINUS     &kp LBKT         &kp RBKT   &kp BSLH        &kp DELETE
 &studio_unlock  &kp A       &kp S         &kp D         &kp F       &kp G     &kp H       &kp KP_N4     &kp KP_N5  &kp KP_N6      &kp KP_PLUS      &kp SQT          &kp ENTER  &kp PAGE_UP
 &kp LEFT_SHIFT  &kp Z       &kp X         &kp C         &kp V       &kp B     &kp N       &kp KP_N1     &kp KP_N2  &kp KP_N3      &kp KP_ENTER     &kp RIGHT_SHIFT  &kp UP     &kp PAGE_DOWN
-&kp LCTRL       &kp LGUI    &kp LALT      &kp SPACE     &kp KP_N0   &kp RALT  &kp KP_DOT  &kp RCTRL     &kp LEFT   &kp DOWN       &kp RIGHT
+&kp LCTRL       &bootloader    &kp LALT      &kp SPACE     &kp KP_N0   &kp RALT  &kp KP_DOT  &kp RCTRL     &kp LEFT   &kp DOWN       &kp RIGHT
             >;
         };
 
