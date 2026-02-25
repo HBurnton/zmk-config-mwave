@@ -238,14 +238,14 @@
         // LAYER 3: NAV LAYER (WASD + LEFT THUMB ENTER)
 
         nav_layer {
-            display-name = "Nav";
+            display-name = "Nav-Pad";
             bindings = <
-&trans  &trans    &trans         &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &trans         &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &kp UP         &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp LEFT  &kp DOWN       &kp RIGHT  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &trans         &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &kp BACKSPACE  &kp ENTER  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans    &trans     &trans     &trans     &trans     &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans    &kp LEFT   &kp UP     &kp DOWN   &kp RIGHT  &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans    &kp N7     &kp N8     &kp N9     &kp ESC    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans    &kp N4     &kp N5     &kp N6     &kp BSPC   &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans    &kp N1     &kp N2     &kp N3     &trans     &kp CLCK   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans    &trans     &kp N0     &kp RET    &trans     &trans     &trans  &trans  &trans  &trans  &trans
             >;
         };
 
