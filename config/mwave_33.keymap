@@ -106,6 +106,13 @@
             bindings = <&kp C &kp N>;
             label = "MCN";
         };
+
+        m_enter: m_enter {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp ENTER &to 0>;
+            label = "M_ENTER";
+        };
     };
 
     behaviors {
@@ -245,7 +252,7 @@
 &kp CLCK    &kp N7           &kp N8         &kp N9    &kp KP_MINUS  &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans      &kp N4           &kp N5         &kp N6    &kp PLUS      &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans      &kp N1           &kp N2         &kp N3    &kp ENTER     &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans      &kp PERIOD       &kp N0         &kp RET   &trans        &trans    &trans     &trans  &trans  &trans  &trans
+&trans      &kp PERIOD       &kp N0         &m_enter  &trans        &trans    &trans     &trans  &trans  &trans  &trans
             >;
         };
 
