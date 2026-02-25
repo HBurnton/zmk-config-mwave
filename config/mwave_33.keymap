@@ -85,6 +85,20 @@
             bindings = <&kp LALT &kp T &kp M &kp P>;
             label = "M_ATMP";
         };
+
+        m14: m14 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp N0 &kp NUMBER_4>;
+            label = "M14";
+        };
+
+        m17: m17 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp NUMBER_1 &kp N7>;
+            label = "M17";
+        };
     };
 
     behaviors {
@@ -137,11 +151,36 @@
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
         };
+
+        td_2_14: td_2_14 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_2_14";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp NUMBER_2>, <&m14>;
+        };
+
+        td_3_17: td_3_17 {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_3_17";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp NUMBER_3>, <&m17>;
+        };
     };
 };
 
 / {
     #include "mwave_prim.dtsi"
+
+    combos {
+        compatible = "zmk,combos";
+
+        oh8 {
+            bindings = <&m08>;
+            key-positions = <18 19>;
+        };
+    };
 
     keymap {
         compatible = "zmk,keymap";
@@ -152,7 +191,7 @@
             display-name = "Base";
             bindings = <
 &kp ESC    &kp F1       &kp F2             &ht F10 F3        &kp F4       &kp F5         &kp F6       &kp F7     &kp F8     &kp F9    &kp F10    &kp F11    &kp F12    &kp HOME   &kp END  &kp INSERT  &to 1
-&sl 2      &td_1_08     &kp N2             &kp N3            &kp N4       &kp N5         &kp N6       &kp N7     &kp N8     &kp N9    &kp N0     &kp MINUS  &kp EQUAL  &kp BSPC
+&sl 2      &td_1_08     &td_2_14           &td_3_17          &kp N4       &kp N5         &kp N6       &kp N7     &kp N8     &kp N9    &kp N0     &kp MINUS  &kp EQUAL  &kp BSPC
 &kp TAB    &kp Q        &kp W              &kp E             &kp R        &kp T          &kp Y        &kp U      &kp I      &kp O     &kp P      &kp LBKT   &kp RBKT   &kp BSLH   &kp DEL
 &mo 3      &mt LC(A) A  &mt LC(X) S        &mt LC(C) D       &mt LC(V) F  &mt KP_PLUS G  &kp H        &kp J      &kp K      &kp L     &kp SEMI   &kp SQT    &kp RET    &kp PG_UP
 &kp LSHFT  &td_z_n_y    &kp X              &td_c_l           &td_v_h      &kp B          &kp N        &kp M      &kp COMMA  &kp DOT   &kp FSLH   &kp RSHFT  &kp UP     &kp PG_DN
