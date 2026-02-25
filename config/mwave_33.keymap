@@ -7,9 +7,10 @@
 #include "studio-macros.dtsi"
 
 /* GLOBAL SETTINGS */
+
 &mt {
     flavor = "tap-preferred";
-    tapping-term-ms = <150>; 
+    tapping-term-ms = <150>;
     require-prior-idle-ms = <150>;
     quick-tap-ms = <175>;
 };
@@ -35,6 +36,7 @@
         };
 
         // WORK MACROS
+
         m_pt1: m_pt1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -74,6 +76,7 @@
         };
 
         // MENU MACRO (Alt+T, M, P)
+
         m_atmp: m_atmp {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -144,6 +147,7 @@
         compatible = "zmk,keymap";
 
         // LAYER 0: BASE
+
         default_layer {
             display-name = "Base";
             bindings = <
@@ -157,6 +161,7 @@
         };
 
         // LAYER 1: FUNCTION / NUMPAD
+
         raise {
             display-name = "Fn";
             bindings = <
@@ -170,36 +175,61 @@
         };
 
         // LAYER 2: WORK MACROS (CMA)
+
         work_layer {
             display-name = "CMA";
             bindings = <
-&trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &m_pt1    &m_pt2  &m_cma  &m_ms   &m_aka  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&m_psr  &m_atmp   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&kp CLCK &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans    &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans    &m_pt1   &m_pt2  &m_cma  &m_ms   &m_aka  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&m_psr    &m_atmp  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&kp CLCK  &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans    &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans    &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
         // LAYER 3: NAV LAYER (WASD + LEFT THUMB ENTER)
+
         nav_layer {
             display-name = "Nav";
             bindings = <
-&trans  &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &kp UP    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &trans    &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans    &kp RET   &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans    &trans         &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans    &trans         &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans    &kp UP         &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp LEFT  &kp DOWN       &kp RIGHT  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans    &trans         &trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans    &kp BACKSPACE  &kp ENTER  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
-        extra1 { display-name = "Blue"; status = "reserved"; };
-        extra2 { display-name = "Green"; status = "reserved"; };
-        extra3 { display-name = "Red"; status = "reserved"; };
-        extra4 { display-name = "Purple"; status = "reserved"; };
-        extra5 { display-name = "Cyan"; status = "reserved"; };
-        extra6 { display-name = "Yellow"; status = "reserved"; };
+        extra1 {
+            display-name = "Blue";
+            status = "reserved";
+        };
+
+        extra2 {
+            display-name = "Green";
+            status = "reserved";
+        };
+
+        extra3 {
+            display-name = "Red";
+            status = "reserved";
+        };
+
+        extra4 {
+            display-name = "Purple";
+            status = "reserved";
+        };
+
+        extra5 {
+            display-name = "Cyan";
+            status = "reserved";
+        };
+
+        extra6 {
+            display-name = "Yellow";
+            status = "reserved";
+        };
     };
 };
