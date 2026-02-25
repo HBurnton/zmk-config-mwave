@@ -82,7 +82,7 @@
             #binding-cells = <0>;
             wait-ms = <40>;
             tap-ms = <20>;
-            bindings = <&kp LALT &kp T &kp M &kp P>;
+            bindings = <&kp LALT &kp T &kp M &kp P &to 3>;
             label = "M_ATMP";
         };
 
