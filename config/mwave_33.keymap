@@ -89,7 +89,7 @@
         m14: m14 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp N0 &kp NUMBER_4>;
+            bindings = <&kp NUMBER_1 &kp NUMBER_4>;
             label = "M14";
         };
 
