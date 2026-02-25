@@ -113,6 +113,13 @@
             bindings = <&kp ENTER &to 0>;
             label = "M_ENTER";
         };
+
+        unlink: unlink {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp U &kp LS(F11) &kp RET>;
+            label = "UNLINK";
+        };
     };
 
     behaviors {
@@ -233,7 +240,7 @@
         work_layer {
             display-name = "CMA";
             bindings = <
-&trans    &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans    &unlink  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans    &m_pt1   &m_pt2  &m_cma  &m_ms   &m_aka  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &m_psr    &m_atmp  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &kp CLCK  &trans   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
